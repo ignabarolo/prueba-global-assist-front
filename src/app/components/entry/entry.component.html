@@ -1,0 +1,35 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name Guest</th>
+      <th scope="col">Door</th>
+      <th scope="col">Created</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let entry of entries | slice : desde : hasta">
+      <th scope="row">{{ entry.id }}</th>
+      <td>{{ entry.guest.firstname + " " + entry.guest.lastname }}</td>
+      <td>{{ entry.door.description }}</td>
+      <td>{{ entry.created | date : "dd/MM/yyyy" }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteEntry(entry.id)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<mat-paginator
+  [length]="entries.length"
+  [pageSize]="pagaSize"
+  (page)="nextPage($event)"
+>
+</mat-paginator>
