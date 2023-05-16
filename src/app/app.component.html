@@ -1,4 +1,3 @@
-<!-- <h1 style="text-align: center">{{ title }} app is running!</h1> -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
   <div class="container-fluid space-between justify-content-start">
     <h2 class="mr-3" href="#">Entries</h2>
@@ -12,33 +11,68 @@
       >
         Filter
       </button>
-      <form class="dropdown-menu p-4">
+      <form
+        class="dropdown-menu p-4"
+        [formGroup]="form"
+        (ngSubmit)="submitForm()"
+      >
         <div class="mb-3">
-          <label for="FromDate" class="form-label">FromDate</label>
+          <label for="fromDate" class="form-label">From Date:</label>
           <input
+            formControlName="fromDate"
             type="date"
             class="form-control"
             id="FromDate"
-            placeholder="FromDate"
+            [min]="now"
+            [(ngModel)]="fromDate"
+            (ngModelChange)="cambioFecha()"
           />
+          <span
+            style="color: red"
+            *ngIf="
+              (form.get('fromDate')?.invalid && form.get('fromDate')?.dirty) ||
+              form.get('fromDate')?.touched ||
+              isSubmitted
+            "
+            >Campo Requerido</span
+          >
         </div>
         <div class="mb-3">
-          <label for="ToDate" class="form-label">ToDate</label>
+          <label for="toDate" class="form-label">To Date:</label>
           <input
+            formControlName="toDate"
             type="date"
             class="form-control"
-            id="ToDate"
-            placeholder="ToDate"
+            id="toDate"
+            [min]="deshabilitar"
           />
+          <span
+            style="color: red"
+            *ngIf="
+              (form.get('toDate')?.invalid && form.get('toDate')?.dirty) ||
+              form.get('toDate')?.touched ||
+              isSubmitted
+            "
+            >Campo Requerido</span
+          >
         </div>
         <div class="mb-3">
-          <label for="DoorId" class="form-label">DoorId</label>
+          <label for="DoorId" class="form-label">Door ID:</label>
           <input
+            formControlName="doorId"
             type="text"
             class="form-control"
             id="doorId"
-            placeholder="doorId"
           />
+          <span
+            style="color: red"
+            *ngIf="
+              (form.get('doorId')?.invalid && form.get('doorId')?.dirty) ||
+              form.get('doorId')?.touched ||
+              isSubmitted
+            "
+            >Campo Requerido</span
+          >
         </div>
 
         <button type="submit" class="btn btn-primary">Filtrar</button>
@@ -46,8 +80,4 @@
     </div>
   </div>
 </nav>
-<!-- <ng-container *ngFor="let entry of entries"> -->
-<!-- <app-entry [entry]="entry"></app-entry> -->
 <app-entry></app-entry>
-<!-- </ng-container> -->
-<!-- <app-entry [entry]="entry" *ngFor="let entry of entries"></app-entry> -->
