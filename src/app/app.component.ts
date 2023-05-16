@@ -16,19 +16,6 @@ import {
 export class AppComponent {
   title = 'global-assist-front';
 
-  // entry!: EntryComponent;
-
-  // constructor(private entry: EntryComponent) {}
-
-  // Método en el componente padre que llamará al método del componente hijo
-  // callChildMethod(data: any) {
-  //   if (this.entry) {
-  //     this.entry.reloadEntries(data);
-  //   } else {
-  //     console.log('NO INICIALIZADO');
-  //   }
-  // }
-
   form!: FormGroup;
   now: any;
   deshabilitar: any;
@@ -39,13 +26,9 @@ export class AppComponent {
   cambioFecha() {
     this.deshabilitar = this.fromDate;
   }
-  // constructor(private entry: EntryComponent) {}
 
   isSubmitted = false;
 
-  // actualizarDatos(data: any) {
-  //   this.entry.reloadEntries(data);
-  // }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -84,24 +67,6 @@ export class AppComponent {
             console.error('Error al eliminar recurso:', error);
           }
         );
-      //   this.http
-      //     .get(
-      //       `http://localhost:8080/api/entries/${
-      //         this.form.get('doorId')?.value
-      //       }/${this.form.get('fromDate')?.value}/${
-      //         this.form.get('toDate')?.value
-      //       }`
-      //     )
-      //     .subscribe(
-      //       (data: any) => {
-      //         console.log(data);
-      //         this.actualizarDatos(data);
-      //       },
-      //       (error) => {
-      //         console.error('Error', error);
-      //       }
-      //     );
-      // } else {
     }
   }
 }
