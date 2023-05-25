@@ -7,6 +7,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Entry } from './models/entry.model';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,8 @@ export class AppComponent {
   deshabilitar: any;
   fromDate!: string;
 
+  entries: Entry[] = [];
+
   http = inject(HttpClient);
 
   cambioFecha() {
@@ -28,7 +31,6 @@ export class AppComponent {
   }
 
   isSubmitted = false;
-
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -61,7 +63,7 @@ export class AppComponent {
         .subscribe(
           (data: any) => {
             console.log(data);
-            // this.actualizarDatos(data);
+            this.entries = data;
           },
           (error) => {
             console.error('Error al eliminar recurso:', error);

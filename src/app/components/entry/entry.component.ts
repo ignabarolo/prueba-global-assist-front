@@ -9,7 +9,7 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./entry.component.css'],
 })
 export class EntryComponent {
-  entries: Entry[] = [];
+  @Input() entries: Entry[] = [];
   http = inject(HttpClient);
 
   pagaSize = 3;
@@ -44,10 +44,10 @@ export class EntryComponent {
       });
   }
 
-  reloadEntries(data: any) {
-    this.entries = data;
-    console.log(data);
-  }
+  // reloadEntries(data: any) {
+  //   this.entries = data;
+  //   console.log(data);
+  // }
 
   ngOnInit() {
     this.loadEntries();
